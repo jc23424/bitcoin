@@ -125,7 +125,7 @@ public:
         static_assert(Consensus::DEPLOYMENT_SEGWIT == Consensus::DEPLOYMENT_CSV, "segwit and csv deployed together");
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork  = uint256S("0x00000000000000000000000000000000000000000000000000000000ffffffff");
+        consensus.nMinimumChainWork  = uint256S("0x0000000000000000000000000000000000000000000000000000ffffffffffff");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x0000000082ece76130c82337903b14a2109fab2dcd2d153fcdbf48a0054a694b");
@@ -138,7 +138,6 @@ public:
         nDefaultPort = 7933;
 
         nPruneAfterHeight = 100000;
-        const size_t N = 200, K = 9;
 
         nEquihashN = 200;
         nEquihashK = 9;
@@ -189,6 +188,7 @@ public:
                 { 320000, uint256S("0x0000000311dc0b774a2f90476b5ee225999df6eb4f3ba1bc875e804bab17e313") }
             }
         };
+        consensus.defaultAssumeValid = uint256S("0x0000000082ece76130c82337903b14a2109fab2dcd2d153fcdbf48a0054a694b");
 
         consensus.defaultAssumeValid = checkpointData.mapCheckpoints.crbegin()->second;
 
