@@ -24,8 +24,19 @@ enum
     SIGHASH_ALL = 1,
     SIGHASH_NONE = 2,
     SIGHASH_SINGLE = 3,
+    SIGHASH_FORKID       = 0x40,
     SIGHASH_ANYONECANPAY = 0x80,
 };
+
+
+enum
+{
+    FORKID_NONE = 0,
+    FORKID_BTCP = 42,
+    FORKID_BTCGPU = 79
+};
+
+static const int FORKID_IN_USE = FORKID_BTCP;
 
 /** Script verification flags.
  *
@@ -111,6 +122,10 @@ enum
     // Public keys in segregated witness scripts must be compressed
     //
     SCRIPT_VERIFY_WITNESS_PUBKEYTYPE = (1U << 15),
+
+    // Require that all signatures sign the forkid
+    //
+    SCRIPT_VERIFY_FORKID = (1U << 16)
 };
 
 bool CheckSignatureEncoding(const std::vector<unsigned char> &vchSig, unsigned int flags, ScriptError* serror);
